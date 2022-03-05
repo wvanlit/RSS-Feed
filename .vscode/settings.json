@@ -1,0 +1,7 @@
+{
+    "files.exclude": {
+        "node_modules/": true
+    },
+    "prettier.configPath": "./prettier.config.js",
+    "editor.tabSize": 2,
+}
