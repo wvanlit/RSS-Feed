@@ -10,7 +10,7 @@
     <h2>No results</h2>
   {:else}
     <ul>
-      {#each items as item, i}
+      {#each items as item, i (item.link)}
         {#key item}
           <li in:fade={{ delay: i * 30 }}>
             <RssItem {item} />
@@ -27,11 +27,11 @@
 
     box-sizing: border-box;
     margin-left: 1em;
-    padding: 1px 1em;
+    padding-right: 8px;
     max-height: calc(100vh - 4em);
 
     background: #efefef;
-    box-shadow: inset 0px 0px 15px #222;
+    box-shadow: inset 0px 0px 15px #2225;
     border-radius: 20px 20px;
   }
 

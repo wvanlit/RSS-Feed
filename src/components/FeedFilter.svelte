@@ -27,18 +27,20 @@
 
 <section class="filter">
   <h2>Filter Feed</h2>
-  <h3>Enabled</h3>
   <ul>
     {#each feeds as feed}
-      <li>
+      {@const title =
+        feed.channel.title !== '' ? feed.channel.title : feed.url.toString()}
+      <li class="feed-title">
         <input
           type="checkbox"
           checked={filter.urls?.includes(feed.url)}
           bind:value={feed.url}
           on:click={() => toggleEnabled(feed)}
         />
-        <span>
-          {feed.channel.title !== '' ? feed.channel.title : feed.url}
+
+        <span {title} class="feed-title">
+          {@html title}
         </span>
       </li>
     {/each}
@@ -48,7 +50,7 @@
 <style>
   ul {
     list-style-type: none;
-    margin: 10px 10px;
+    margin: 0px 10px;
     padding: 0;
   }
 
@@ -58,5 +60,12 @@
 
   .filter {
     grid-area: filter;
+
+    padding-left: 5px;
+  }
+
+  input[type='checkbox'] {
+    /* change "blue" browser chrome to yellow */
+    filter: invert(100%) hue-rotate(18deg) brightness(1.7);
   }
 </style>

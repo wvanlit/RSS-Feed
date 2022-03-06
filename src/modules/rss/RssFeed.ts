@@ -31,7 +31,11 @@ export class RssItem implements IRssItem {
   publishDate: Date
   link: string
 
+  elem: Element
+
   constructor(rssItem: Element) {
+    this.elem = rssItem
+
     this.title = queryOrDefault(rssItem, 'title')
     this.description = queryOrDefault(rssItem, 'description')
     this.link = queryOrDefault(rssItem, 'link')

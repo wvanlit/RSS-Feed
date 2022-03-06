@@ -3,6 +3,7 @@
 
   import { container } from 'tsyringe'
   import FeedFilter from './components/FeedFilter.svelte'
+  import Loader from './components/Loader.svelte'
   import RssMultiFeed from './components/RssMultiFeed.svelte'
   import SourceList from './components/SourceList.svelte'
   import { createLocalStore } from './modules/util/localStorageStore'
@@ -54,10 +55,11 @@
     <h1>RSS Feed Viewer</h1>
   </header>
   {#await initialLoadPromise}
-    Loading initial feed...
+    <div class="loader">
+      <Loader />
+    </div>
   {:then}
     <SourceList
-      classes="sources"
       sources={manager.feeds.map(feed => feed.url)}
       addNew={addNewSource}
       remove={removeSource}
@@ -75,23 +77,30 @@
 </div>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
   .App {
     font-family: 'Poppins', sans-serif;
 
-    padding: 25px;
-    min-height: calc(100vh - 50px);
+    padding: 30px 15px;
+    min-height: 100vh;
+
+    background-color: #fafafa;
 
     display: grid;
     grid-template:
-      'header feed' 50px
-      'sources feed' auto
-      'filter feed' 1fr;
+      'header feed' auto
+      'filter feed' auto
+      'sources feed' 1fr;
 
     grid-template-columns: auto 1fr;
   }
 
   .header {
     grid-area: header;
+  }
+
+  .loader {
+    grid-area: feed;
   }
 </style>
