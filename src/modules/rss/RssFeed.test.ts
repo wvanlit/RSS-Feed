@@ -55,7 +55,7 @@ describe('Rss Feed', () => {
   })
 
   describe('Rss Feed', () => {
-    const feed = new RssFeed(rss)
+    const feed = new RssFeed(new URL('http://localhost'), rss)
 
     expect(feed.channel.title).to.equal('RSS Test Feed')
     expect(feed.items.length).to.equal(3)

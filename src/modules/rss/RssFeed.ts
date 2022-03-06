@@ -1,9 +1,11 @@
 export class RssFeed implements IRssFeed {
   channel: IRssChannel
   items: IRssItem[]
+  url: URL
 
-  constructor(rss: Document) {
+  constructor(url: URL, rss: Document) {
     this.channel = new RssChannel(rss)
+    this.url = url
 
     this.items = Array.from(rss.querySelectorAll('item')).map(
       item => new RssItem(item)

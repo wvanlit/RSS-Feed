@@ -12,10 +12,30 @@ interface IRssItem {
 }
 
 interface IRssFeed {
+  readonly url: URL
   readonly channel: IRssChannel
   readonly items: IRssItem[]
 }
 
 interface IRssProvider {
   getFeed: (url: URL) => Promise<IRssFeed>
+}
+
+interface IRssFeedManager {
+  readonly feeds: IRssFeed[]
+
+  // CRUD
+  get: (url: URL) => IRssFeed | undefined
+  add: (url: URL) => Promise<void>
+  update: (current: URL, update: URL) => Promise<void>
+  delete: (url: URL) => void
+
+  // Display
+  showItems: (filter?: IRssFeedFilter) => IRssItem[]
+}
+
+interface IRssFeedFilter {
+  urls?: URL[]
+  beforeDate?: Date
+  afterDate?: Date
 }

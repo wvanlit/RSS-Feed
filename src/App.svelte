@@ -1,18 +1,41 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
-  import RssFeed from './components/rss/RssFeed.svelte'
-  import { RssProvider } from './modules/rss/RssProvider'
+  import { container } from 'tsyringe'
+  import RssItem from './components/rss/RssItem.svelte'
+  import SourceList from './components/SourceList.svelte'
 
-  const url = new URL('https://hnrss.org/frontpage')
+  let manager = container.resolve<IRssFeedManager>('rss.feedmanager')
 
-  const feedPromise = new RssProvider().getFeed(url)
+  $: feeds = manager.feeds
+  $: itemsPromise = manager.showItems()
+
+  const updateView = () => {
+    manager = manager
+  }
+
+  async function addNewSource(url: URL) {
+    await manager.add(url)
+    updateView()
+  }
+
+  async function removeSource(url: URL) {
+    manager.delete(url)
+    updateView()
+  }
 </script>
 
 <div class="App">
-  {#await feedPromise}
+  <h1>RSS Feed Viewer</h1>
+  <SourceList
+    sources={feeds.map(feed => feed.url)}
+    addNew={addNewSource}
+    remove={removeSource}
+  />
+  {#await itemsPromise}
     Loading Feed...
   {:then feed}
-    <RssFeed {feed} />
+    {#each feed as item}
+      <RssItem {item} />
+    {/each}
   {/await}
 </div>
 

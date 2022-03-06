@@ -2,10 +2,13 @@
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",
-    "test": "web-test-runner \"src/**/*.test.ts\""
+    "test": "web-test-runner \"src/**/*.test.ts\"",
+    "test:watch": "npm test -- --watch"
   },
   "dependencies": {
-    "svelte": "^3.37.0"
+    "reflect-metadata": "^0.1.13",
+    "svelte": "^3.37.0",
+    "tsyringe": "^4.6.0"
   },
   "devDependencies": {
     "@snowpack/plugin-dotenv": "^2.2.0",
