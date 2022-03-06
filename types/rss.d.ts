@@ -18,20 +18,23 @@ interface IRssFeed {
 }
 
 interface IRssProvider {
-  getFeed: (url: URL) => Promise<IRssFeed>
+  getFeed(url: URL): Promise<IRssFeed>
+  getAllFeeds(urls: URL[]): Promise<IRssFeed[]>
 }
 
 interface IRssFeedManager {
   readonly feeds: IRssFeed[]
 
+  loadInitial(url: URL[]): Promise<void>
+
   // CRUD
-  get: (url: URL) => IRssFeed | undefined
-  add: (url: URL) => Promise<void>
-  update: (current: URL, update: URL) => Promise<void>
-  delete: (url: URL) => void
+  get(url: URL): IRssFeed | undefined
+  add(url: URL): Promise<void>
+  update(current: URL, update: URL): Promise<void>
+  delete(url: URL): void
 
   // Display
-  showItems: (filter?: IRssFeedFilter) => IRssItem[]
+  showItems(filter: IRssFeedFilter): IRssItem[]
 }
 
 interface IRssFeedFilter {

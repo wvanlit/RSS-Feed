@@ -11,6 +11,10 @@ class FakeRssProvider implements IRssProvider {
     return this.feed!
   }
 
+  getAllFeeds(urls: URL[]): Promise<IRssFeed[]> {
+    throw new Error('Method not implemented.')
+  }
+
   setFeed(feed: IRssFeed): void {
     this.feed = feed
   }

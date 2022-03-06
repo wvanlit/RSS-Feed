@@ -10,12 +10,18 @@ export class RssFeedManager implements IRssFeedManager {
     this.provider = provider
   }
 
+  async loadInitial(urls: URL[]): Promise<void> {
+    this.feeds = await this.provider.getAllFeeds(urls)
+  }
+
   //#region CRUD Methods
   get(url: URL): IRssFeed | undefined {
     return this.feeds.find(feed => feed.url === url)
   }
 
   async add(url: URL): Promise<void> {
+    if (this.feeds.find(f => f.url.toString() === url.toString()))
+      throw new Error('URL already in feed')
     this.feeds.push(await this.provider.getFeed(url))
     this.feeds = [...this.feeds]
   }
@@ -31,8 +37,13 @@ export class RssFeedManager implements IRssFeedManager {
   }
   //#endregion
 
-  showItems(filter?: IRssFeedFilter | undefined): IRssItem[] {
-    // TODO filter
-    return this.feeds.flatMap(feed => feed.items)
+  showItems(filter: IRssFeedFilter): IRssItem[] {
+    return this.feeds
+      .filter(feed => filter.urls?.includes(feed.url))
+      .flatMap(feed => feed.items)
+      .sort(
+        (itemA, itemB) =>
+          itemB.publishDate.getTime() - itemA.publishDate.getTime()
+      )
   }
 }

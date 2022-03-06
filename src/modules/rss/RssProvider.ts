@@ -12,4 +12,8 @@ export class RssProvider implements IRssProvider {
 
     return new RssFeed(url, response)
   }
+
+  public async getAllFeeds(urls: URL[]): Promise<IRssFeed[]> {
+    return await Promise.all(urls.map(this.getFeed))
+  }
 }

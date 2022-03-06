@@ -1,4 +1,6 @@
 import 'reflect-metadata'
+import 'ress'
+
 import App from './App.svelte'
 import { addDependencies } from './container'
 
