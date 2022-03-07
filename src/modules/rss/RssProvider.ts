@@ -1,10 +1,12 @@
 import { injectable } from 'tsyringe'
 import { RssFeed } from './RssFeed'
 
+const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/'
+
 @injectable()
 export class RssProvider implements IRssProvider {
   public async getFeed(url: URL): Promise<IRssFeed> {
-    const content = await fetch(url.toString(), {
+    const content = await fetch(CORS_PROXY + url.toString(), {
       cache: 'default',
     })
     const response = new DOMParser().parseFromString(

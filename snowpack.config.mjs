@@ -27,6 +27,6 @@ export default {
     /* ... */
   },
   buildOptions: {
-    /* ... */
+    baseUrl: '/RSS-Feed/',
   },
 }
