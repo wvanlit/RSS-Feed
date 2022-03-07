@@ -61,12 +61,12 @@
   }
 
   .error {
-    color: #ff0f0f;
+    color: var(--error);
     font-weight: bold;
   }
 
   .remove {
-    background-color: rgb(145, 145, 145);
+    background-color: var(--neutral);
     color: white;
     font-size: 20px;
     border-radius: 0.2em;
@@ -76,8 +76,12 @@
     text-align: center;
   }
 
+  button:hover {
+    background-color: var(--primary);
+  }
+
   .add {
-    background-color: rgb(145, 145, 145);
+    background-color: var(--neutral);
     color: white;
     font-size: 20px;
     border-radius: 0.2em;

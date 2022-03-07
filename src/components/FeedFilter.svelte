@@ -60,12 +60,10 @@
 
   .filter {
     grid-area: filter;
-
     padding-left: 5px;
   }
 
   input[type='checkbox'] {
-    /* change "blue" browser chrome to yellow */
-    filter: invert(100%) hue-rotate(18deg) brightness(1.7);
+    filter: var(--primary-checkbox);
   }
 </style>

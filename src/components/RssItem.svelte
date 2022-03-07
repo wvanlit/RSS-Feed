@@ -7,7 +7,7 @@
     return date.toLocaleString('en-UK', {
       hour12: false,
 
-      day: 'numeric',
+      day: '2-digit',
       month: 'short',
       year: '2-digit',
 
@@ -18,29 +18,38 @@
 </script>
 
 <article>
-  <h3><a href={item.link} target="_blank">{@html item.title}</a></h3>
-  {@html item.description}
-  <time>{formatDate(item.publishDate)}</time>
+  <time>[{formatDate(item.publishDate)}]</time><br />
+  <h3>
+    <a href={item.link} target="_blank">{@html item.title}</a>
+  </h3>
+  <div>
+    {@html item.description}
+  </div>
 </article>
 
 <style>
+  time {
+    font-family: 'monospace';
+  }
+
   article {
     margin: 0.5em;
     padding: 1em 2em;
     background-color: #ccc;
-    color: #333;
+    color: var(--feed-item-bg);
     border-radius: 10px;
   }
 
   a {
-    color: #111;
+    color: var(--feed-item-text);
   }
 
-  a:hover {
-    color: rgb(255, 122, 13);
+  a:hover,
+  a:visited:hover {
+    color: var(--primary);
   }
 
   a:visited {
-    color: #999;
+    color: var(--feed-item-text-visited);
   }
 </style>

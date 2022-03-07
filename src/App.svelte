@@ -79,13 +79,26 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
+  :global(:root) {
+    --primary: #ff7a0d;
+    --primary-checkbox: invert(100%) hue-rotate(18deg) brightness(1.7);
+    --neutral: #919191;
+    --error: #ff0f0f;
+    --bg: #fafafa;
+
+    --feed-bg: #efefef;
+    --feed-item-bg: #333;
+    --feed-item-text: #111;
+    --feed-item-text-visited: #999;
+  }
+
   .App {
     font-family: 'Poppins', sans-serif;
 
     padding: 30px 15px;
     min-height: 100vh;
 
-    background-color: #fafafa;
+    background-color: var(--bg);
 
     display: grid;
     grid-template:

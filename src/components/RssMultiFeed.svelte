@@ -30,7 +30,7 @@
     padding-right: 8px;
     max-height: calc(100vh - 4em);
 
-    background: #efefef;
+    background: var(--feed-bg);
     box-shadow: inset 0px 0px 15px #2225;
     border-radius: 20px 20px;
   }
