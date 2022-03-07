@@ -3752,9 +3752,10 @@ var __decorate2 = (decorators, target, key, kind) => {
     __defProp3(target, key, result);
   return result;
 };
+var CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
 var RssProvider = class {
   async getFeed(url) {
-    const content = await fetch(url.toString(), {
+    const content = await fetch(CORS_PROXY + url.toString(), {
       cache: "default"
     });
     const response = new DOMParser().parseFromString(await content.text(), "text/xml");
