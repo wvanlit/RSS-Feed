@@ -4,4 +4,5 @@
     },
     "prettier.configPath": "./prettier.config.js",
     "editor.tabSize": 2,
+    "mocha.subdirectory": "src",
 }
